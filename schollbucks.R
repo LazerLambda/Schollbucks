@@ -129,7 +129,7 @@ run_bot <- function(dt, path) {
 
 run_Script <- function(
   costs = 0.2,
-  bot_sent = F,
+  bot_send = F,
   path = "~/.Schollbucks") {
   repeat{
     table <- construct_table()
@@ -140,7 +140,7 @@ run_Script <- function(
     }
   }
   write_to_file(table, path)
-  if (bot_sent) {
+  if (bot_send) {
     run_bot(table, path)
   }
 }
