@@ -1,0 +1,6 @@
+.renv
+oldData.R
+*.pdf
+*.png
+*.txt
+.Rhistory
