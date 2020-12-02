@@ -19,7 +19,7 @@ readNames <- function() {
 
     # get input 
     input <- readline(prompt=writeLines(c("<Name> <Anzahl>", "Type \":\" to quit insert-mode!")))
-    parsed <- str_match(input, "(.+)-(\\d+)")
+    parsed <- stringr::str_match(input, "(.+)-(\\d+)")
     name <- parsed[[2]]
     count <- as.numeric(parsed[[3]])
   
@@ -56,7 +56,7 @@ construct_table <- function() {
 
 calculate_prices <- function(dt, cost = 0.2) {
   assertDataTable(dt)
-  assertTRUE(dim(a)[[1]] > 0)
+  assertTRUE(dim(dt)[[1]] > 0)
   return(
     dt %>% mutate(costs = cost * count)
   )
@@ -113,6 +113,10 @@ run_bot <- function(dt, path) {
 
   bot <- Bot(token = TOKEN)
   updates <- bot$getUpdates()
+  print(updates)
+  if(length(updates) == 0){
+    stop("ERROR: No groups can be found")
+  }
   chat_id <- updates[[1L]]$from_chat_id()
 
   bot$sendMessage(chat_id,
@@ -124,6 +128,7 @@ run_bot <- function(dt, path) {
   )
   bot$sendPhoto(chat_id,
                 photo = plot_stat(dt, path))
+  print("sent")
 }
 
 
