@@ -18,7 +18,7 @@ readNames <- function() {
     }
 
     # get input 
-    input <- readline(prompt=writeLines(c("<Name> <Anzahl>", "Type \":\" to quit insert-mode!")))
+    input <- readline(prompt=writeLines(c("<Name>-<Anzahl>", "Type \":\" to quit insert-mode!")))
     parsed <- stringr::str_match(input, "(.+)-(\\d+)")
     name <- parsed[[2]]
     count <- as.numeric(parsed[[3]])

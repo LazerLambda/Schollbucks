@@ -4,3 +4,4 @@ oldData.R
 *.png
 *.txt
 .Rhistory
+.RData
